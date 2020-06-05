@@ -1,5 +1,5 @@
 How to use
 ---------
 - npm install
-- npm start
 - expo upgrade
+- npm start

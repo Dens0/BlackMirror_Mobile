@@ -5,7 +5,7 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
 import productsReducer from './store/reducers/element';
-import ShopNavigator from './navigation/ShopNavigator';
+import ShopNavigator from './navigation/MirrorNavigator';
 
 const rootReducer = combineReducers({
   products: productsReducer,

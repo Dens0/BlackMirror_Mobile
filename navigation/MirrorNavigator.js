@@ -172,6 +172,7 @@ const ContactNavigator = createStackNavigator(
                 />
             )
         },
+        defaultNavigationOptions: defaultNavOptions
     }
 );
 
@@ -179,7 +180,7 @@ const ContactNavigator = createStackNavigator(
 
 
 //GLOWNA NAWIGACJA
-const ShopNavigator = createDrawerNavigator(
+const MirrorNavigator = createDrawerNavigator(
     {
 
         Products: ElementsNavigator,
@@ -210,4 +211,4 @@ const ShopNavigator = createDrawerNavigator(
     }
 );
 
-export default createAppContainer(ShopNavigator);
+export default createAppContainer(MirrorNavigator);
