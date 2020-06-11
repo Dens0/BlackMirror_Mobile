@@ -5,12 +5,14 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
 import productsReducer from './store/reducers/element';
-import ShopNavigator from './navigation/MirrorNavigator';
+import MirrorNavigator from './navigation/MirrorNavigator';
+import BannerAdd from "./components/Adds/BannerAdd";
+import FullAdd from "./components/Adds/FullAdd";
+import {View} from "react-native";
 
 const rootReducer = combineReducers({
   products: productsReducer,
 });
-
 const store = createStore(rootReducer);
 
 const fetchFonts = () => {
@@ -37,7 +39,22 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-            <ShopNavigator />
+            <MirrorNavigator
+            />
+        <FullAdd/>
+
     </Provider>
+
   );
+
+
+
 }
+// return(
+//     <AdMobBanner
+//         bannerSize="banner"
+//         adUnitID="ca-app-pub-8731014179800764/2334467495" // Test ID, Replace with your-admob-unit-id
+//         servePersonalizedAds // true or false
+//         onDidFailToReceiveAdWithError={this.bannerError} />
+//
+// );

@@ -6,13 +6,35 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../components/UI/HeaderButton';
 import ElementItem from '../components/shop/ElementItem';
 import Colors from '../constants/Colors';
+import {
+    AdMobBanner,
+    AdMobInterstitial,
+    PublisherBanner,
+    AdMobRewarded,
+    setTestDeviceIDAsync,
+} from 'expo-ads-admob';
+import BannerAdd from "../components/Adds/BannerAdd";
+import FullAdd from "../components/Adds/FullAdd";
+
+
+//AD
+//ca-app-pub-8731014179800764~6037445767 indentyfikator aplikacji
+//ca-app-pub-8731014179800764/4768542227 identyfikator jednoski reklamowej
+//IOS
+//ca-app-pub-8731014179800764~9231419466 - indentyfikator aplikacji
+//ca-app-pub-8731014179800764/7814681429 - identyfikator jednoski reklamowej
+
 
 const ElementsOverviewScreen = props => {
     const products = useSelector(state => state.products.availableProducts);
 
 
     return (
+
         <View style={styles.screen}>
+            <BannerAdd/>
+
+
             <FlatList
                 data={products}
                 keyExtractor={item => item.id}
@@ -31,8 +53,11 @@ const ElementsOverviewScreen = props => {
 
                     </ElementItem>
                 )}
+
             />
         </View>
+
+
     );
 };
 

@@ -2,7 +2,9 @@
   "expo": {
     "name": "BM Mobile",
     "slug": "BlackMirrorMobile",
+
     "privacy": "public",
+    "sdkVersion": "37.0.0",
     "platforms": [
       "ios",
       "android"
@@ -15,6 +17,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -22,8 +25,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.BMteam.BlackMirror",
+
+      "config": {
+
+        "googleMobileAdsAppId": "ca-app-pub-8731014179800764~9231419466",
+      }
+    },
+    "android": {
+      "package": "com.BMteam.BlackMirror",
+      "versionCode": 1,
+      "config": {
+
+        "googleMobileAdsAppId": "ca-app-pub-8731014179800764~6037445767",
+      }
     },
     "description": ""
   }
 }
+

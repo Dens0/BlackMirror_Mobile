@@ -42,8 +42,9 @@ const ElementItem = props => {
 
 const styles = StyleSheet.create({
   element: {
-    height: 300,
+    height: 200,
     margin: 20,
+    marginHorizontal:40,
     // backgroundColor:Colors.secondary
   },
   touchable: {
@@ -59,39 +60,42 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor:Colors.tertiary,
     alignItems: 'center',
-
+    justifyContent: 'center'
   },
   image: {
-    width: '60%',
-    height: '100%',
+    width: '50%',
+    height: '50%',
     resizeMode: 'contain',
-
     // backgroundColor:Colors.primary
 
   },
   details: {
     alignItems: 'center',
     height: '17%',
-    padding: 10,
-    // backgroundColor:Colors.primary,
-    // color: '#f5f5f5'
+    // padding: 10,
+
   },
   title: {
+    justifyContent: 'center',
+    alignItems:'center',
+
     fontFamily: 'Quicksand-bold',
     fontSize: 18,
     marginVertical: 2,
-    // color: '#f5f5f5'
+    color: '#f5f5f5',
   },
 
   actions: {
     // flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 16,
+    // paddingTop: 16,
     alignItems: 'center',
     height: '23%',
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     backgroundColor:Colors.tertiary,
-    color: '#f5f5f5'
+    color: '#f5f5f5',
+    justifyContent: 'center',
+
+    alignContent: 'center',
   }
 });
 
