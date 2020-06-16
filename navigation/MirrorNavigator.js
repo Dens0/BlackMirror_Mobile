@@ -2,7 +2,8 @@ import React from 'react';
 import {
     createStackNavigator,
     createDrawerNavigator,
-    createAppContainer
+    createAppContainer,
+    createSwitchNavigator,
 } from 'react-navigation';
 import {Platform} from 'react-native';
 import {Ionicons, AntDesign, FontAwesome} from '@expo/vector-icons';
@@ -15,6 +16,7 @@ import InformationScreen from '../screens/InformationsScreen'
 import InstructionsScreen from '../screens/InstructionsScreen'
 import DiaryScreen from '../screens/DiaryScreen'
 import ContactScreen from '../screens/ContactScreen'
+import AuthScreen from "../screens/AuthScreen";
 
 
 import Colors from '../constants/Colors';
@@ -210,5 +212,16 @@ const MirrorNavigator = createDrawerNavigator(
         }
     }
 );
+const AuthNavigator = createStackNavigator({
+    Auth: AuthScreen
+},
+    {
+        defaultNavigationOptions: defaultNavOptions
+    })
 
-export default createAppContainer(MirrorNavigator);
+const MainNavigator = createSwitchNavigator({
+    Auth:AuthNavigator,
+    Mirror:MirrorNavigator,
+
+})
+export default createAppContainer(MainNavigator);

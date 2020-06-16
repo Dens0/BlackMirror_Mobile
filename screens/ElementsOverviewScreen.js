@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/UI/HeaderButton';
-import ElementItem from '../components/shop/ElementItem';
+import ElementItem from '../components/elements/ElementItem';
 import Colors from '../constants/Colors';
 import {
     AdMobBanner,

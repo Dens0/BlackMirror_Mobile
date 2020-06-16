@@ -26,8 +26,9 @@ const FullAdd = props => {
     return <View>
         <PublisherBanner
             bannerSize="smartBannerLandscape"
-            adUnitID={bannerAdId}// Test ID, Replace with your-admob-unit-id
+            adUnitID={'ca-app-pub-8731014179800764/4768542227'}// Test ID, Replace with your-admob-unit-id
             servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={this.bannerError}
 
         />
     </View>;
