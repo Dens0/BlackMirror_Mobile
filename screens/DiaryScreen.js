@@ -3,11 +3,14 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import HeaderButton from "../components/UI/HeaderButton";
 import Colors from "../constants/Colors";
+import DiaryItem from "../components/elements/DiaryItem"
 
 const DiaryScreen = props => {
     return (
         <View style={styles.screen}>
             <Text>DZIENNIK ZMIAN</Text>
+
+            <DiaryItem></DiaryItem>
         </View>
     );
 };
