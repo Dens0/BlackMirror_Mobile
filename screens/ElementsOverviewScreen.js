@@ -81,7 +81,7 @@ ElementsOverviewScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: Colors.secondary,
-
+        paddingBottom: 40
     }
 });
 export default ElementsOverviewScreen;
