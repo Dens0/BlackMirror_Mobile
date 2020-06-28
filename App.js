@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import ReduxThunk from 'redux-thunk'
-
 import productsReducer from './store/reducers/element';
 import MirrorNavigator from './navigation/MirrorNavigator';
 import BannerAdd from "./components/Adds/BannerAdd";
@@ -42,17 +41,10 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-
-            <NavigationContainer
-            />
-            <BannerAdd/>
-
+      <NavigationContainer/>
+      <BannerAdd/>
     </Provider>
-
   );
-
-
-
 }
 // return(
 //     <AdMobBanner

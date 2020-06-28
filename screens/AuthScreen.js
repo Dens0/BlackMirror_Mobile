@@ -10,16 +10,10 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
-
-
 import Input from "../components/UI/Input";
 import Card from "../components/UI/Card";
 import Colors from "../constants/Colors";
 import * as authActions from '../store/actions/auth';
-
-// import Input from '../../components/UI/Input';
-// import Card from '../../components/UI/Card';
-// import Colors from '../../constants/Colors';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 

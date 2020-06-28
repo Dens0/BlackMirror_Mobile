@@ -1,7 +1,5 @@
 import React from 'react';
-import {View, FlatList, Button, Platform, StyleSheet} from 'react-native';
-
-
+import { View, FlatList, Button, Platform, StyleSheet } from 'react-native';
 
 import {
     AdMobBanner,
@@ -21,20 +19,15 @@ import {
 let bannerAdId = Platform.OS === 'ios =' ? 'ca-app-pub-8731014179800764/7814681429' : 'ca-app-pub-8731014179800764/4768542227';
 
 const FullAdd = props => {
-
-
     return <View>
         <PublisherBanner
             bannerSize="smartBannerLandscape"
             adUnitID={'ca-app-pub-8731014179800764/4768542227'}// Test ID, Replace with your-admob-unit-id
             servePersonalizedAds={true}
             onDidFailToReceiveAdWithError={this.bannerError}
-
         />
     </View>;
 };
-
-
 
 export default FullAdd
 

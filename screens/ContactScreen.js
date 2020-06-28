@@ -26,9 +26,9 @@ ContactScreen.navigationOptions = navData => {
                 />
             </HeaderButtons>
         ),
-
     };
 };
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,

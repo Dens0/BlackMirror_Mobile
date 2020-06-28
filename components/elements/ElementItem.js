@@ -29,7 +29,6 @@ const ElementItem = props => {
             <View style={styles.details}>
               <Text style={styles.title}>{props.title}</Text>
             </View>
-
             <View style={styles.actions}>
               {props.children}
             </View>
@@ -67,24 +66,20 @@ const styles = StyleSheet.create({
     height: '50%',
     resizeMode: 'contain',
     // backgroundColor:Colors.primary
-
   },
   details: {
     alignItems: 'center',
     height: '17%',
     // padding: 10,
-
   },
   title: {
     justifyContent: 'center',
     alignItems:'center',
-
     fontFamily: 'Quicksand-bold',
     fontSize: 18,
     marginVertical: 2,
     color: '#f5f5f5',
   },
-
   actions: {
     // flexDirection: 'row',
     // paddingTop: 16,
@@ -94,7 +89,6 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.tertiary,
     color: '#f5f5f5',
     justifyContent: 'center',
-
     alignContent: 'center',
   }
 });

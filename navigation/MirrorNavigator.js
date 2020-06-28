@@ -9,16 +9,12 @@ import {Platform} from 'react-native';
 import {Ionicons, AntDesign, FontAwesome} from '@expo/vector-icons';
 import ElementsOverviewScreen from '../screens/ElementsOverviewScreen';
 import AccountScreen from "../screens/AccountScreen";
-
-
 import TestScreen from '../screens/TestScreen'
 import InformationScreen from '../screens/InformationsScreen'
 import InstructionsScreen from '../screens/InstructionsScreen'
 import DiaryScreen from '../screens/DiaryScreen'
 import ContactScreen from '../screens/ContactScreen'
 import AuthScreen from "../screens/AuthScreen";
-
-
 import Colors from '../constants/Colors';
 
 const defaultNavOptions = {
@@ -34,7 +30,6 @@ const defaultNavOptions = {
     },
     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
-
 
 // ELEMENTY
 const ElementsNavigator = createStackNavigator(
@@ -93,9 +88,7 @@ const TestNavigator = createStackNavigator(
         },
         defaultNavigationOptions: defaultNavOptions
     }
-
 );
-
 
 //INSTRUKCJA
 const InstructionNavigator = createStackNavigator(
@@ -145,7 +138,6 @@ const DairyNavigator = createStackNavigator(
     {
         navigationOptions: {
             drawerLabel: 'Dziennik zmian',
-
             drawerIcon: drawerConfig => (
                 <FontAwesome
                     name={Platform.OS === 'android' ? 'tasks' : 'tasks'}
@@ -165,7 +157,6 @@ const ContactNavigator = createStackNavigator(
     {
         navigationOptions: {
             drawerLabel: 'Kontakt',
-
             drawerIcon: drawerConfig => (
                 <FontAwesome
                     name={Platform.OS === 'android' ? 'envelope-o' : 'envelope-o'}
@@ -178,13 +169,9 @@ const ContactNavigator = createStackNavigator(
     }
 );
 
-
-
-
 //GLOWNA NAWIGACJA
 const MirrorNavigator = createDrawerNavigator(
     {
-
         Products: ElementsNavigator,
         Account: AccountNavigator,
         TestScreen: TestNavigator,
@@ -192,14 +179,9 @@ const MirrorNavigator = createDrawerNavigator(
         Informations: InfoNavigator,
         Diary: DairyNavigator,
         Contact: ContactNavigator,
-
-
     },
     {
-        // drawerPosition: "right",
-        // backBehavior: "order",
         overlayColor: Colors.secondary,
-
         lazy: false,
         drawerType:"front" ,
         drawerBackgroundColor: Colors.tertiary,
@@ -208,20 +190,20 @@ const MirrorNavigator = createDrawerNavigator(
             activeBackgroundColor: Colors.primary,
             inactiveTintColor: Colors.light,
             labelStyle: {fontFamily: 'Quicksand',}
-
         }
     }
 );
-const AuthNavigator = createStackNavigator({
-    Auth: AuthScreen
-},
-    {
+const AuthNavigator = createStackNavigator(
+  {
+        Auth: AuthScreen
+    },
+  {
         defaultNavigationOptions: defaultNavOptions
-    })
+    });
 
 const MainNavigator = createSwitchNavigator({
     Auth:AuthNavigator,
     Mirror:MirrorNavigator,
+});
 
-})
 export default createAppContainer(MainNavigator);

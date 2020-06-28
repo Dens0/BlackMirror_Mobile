@@ -1,7 +1,5 @@
 import React from 'react';
-import {View, FlatList, Button, Platform, StyleSheet} from 'react-native';
-
-
+import { View, FlatList, Button, Platform, StyleSheet } from 'react-native';
 
 import {
     AdMobBanner,
@@ -21,8 +19,6 @@ import {
 // let bannerAdId = Platform.OS === 'ios =' ? 'ca-app-pub-8731014179800764/7814681429' : 'ca-app-pub-8731014179800764/4768542227';
 
 const BannerAdd = props => {
-
-
     return <View>
         <AdMobBanner
             bannerSize="smartBannerLandscape"
@@ -31,8 +27,6 @@ const BannerAdd = props => {
         />
     </View>;
 };
-
-
 
 export default BannerAdd
 

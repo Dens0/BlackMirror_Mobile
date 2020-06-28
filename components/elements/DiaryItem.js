@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import Colors from "../../constants/Colors";
-import Card from '../UI/Card';
 
 const DiaryItem = props => {
   const [commits, setCommits] = useState();
@@ -20,8 +19,10 @@ const DiaryItem = props => {
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
   }
+
   const fetchData = async () => {
     let userData = await SecureStore.getItemAsync('userData').then(res => { return JSON.parse(res); });
+
     const commits = fetch('https://myblackmirror.pl/api/v1/data/changelog', {
       method: 'GET',
       headers: new Headers({
@@ -31,11 +32,12 @@ const DiaryItem = props => {
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(data);
       setCommits(data.data);
     });
-  }
-  fetchData()
+  };
+
+  fetchData();
+
   return (
       <View style={styles.touchable}>
         {commits ? (
@@ -54,7 +56,6 @@ const DiaryItem = props => {
       </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   element: {
@@ -100,7 +101,6 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     color: '#f5f5f5',
   },
-
   actions: {
     // flexDirection: 'row',
     // paddingTop: 16,

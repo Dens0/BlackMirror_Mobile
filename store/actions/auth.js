@@ -1,8 +1,6 @@
 import {AsyncStorage} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 
-// export const SIGNUP = 'SIGNUP';
-// export const LOGIN = 'LOGIN';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 
@@ -43,7 +41,7 @@ export const signup = (email, password) => {
         }
 
         const resData = await response.json();
-        console.log(resData);
+
         dispatch(
             authenticate(
                 resData.localId,
@@ -51,6 +49,7 @@ export const signup = (email, password) => {
                 parseInt(resData.expiresIn) * 1000
             )
         );
+
         const expirationDate = new Date(
             new Date().getTime() + parseInt(resData.expiresIn) * 1000
         );
@@ -80,6 +79,7 @@ export const login = (email, password) => {
         }
 
         const resData = await response.json();
+
         dispatch(
             authenticate(
                 resData.data.id,

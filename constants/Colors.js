@@ -4,5 +4,4 @@ export default {
     tertiary: '#444C57',
     accent: '#ff076a',
     light: '#f5f5f5',
-
 }
