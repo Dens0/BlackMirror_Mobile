@@ -60,7 +60,7 @@ export const signup = (email, password) => {
 export const login = (email, password) => {
     return async dispatch => {
         const response = await fetch(
-            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAj1bu92L5LH_8me0scHM_odddc9M9AFmM',
+            'https://myblackmirror.pl/api/v1/login',
             {
                 method: 'POST',
                 headers: {
@@ -76,13 +76,14 @@ export const login = (email, password) => {
 
         if (!response.ok) {
             const errorResData = await response.json();
-            const errorId = errorResData.error.message;
-            let message = 'Something went wrong!';
-            if (errorId === 'EMAIL_NOT_FOUND') {
-                message = 'This email could not be found!';
-            } else if (errorId === 'INVALID_PASSWORD') {
-                message = 'This password is not valid!';
-            }
+            console.log(errorResData);
+            let message = errorResData.message;
+            // let message = 'Something went wrong!';
+            // if (errorId === 'EMAIL_NOT_FOUND') {
+            //     message = 'This email could not be found!';
+            // } else if (errorId === 'INVALID_PASSWORD') {
+            //     message = 'This password is not valid!';
+            // }
             throw new Error(message);
         }
 
@@ -90,15 +91,15 @@ export const login = (email, password) => {
         console.log(resData);
         dispatch(
             authenticate(
-                resData.localId,
-                resData.idToken,
-                parseInt(resData.expiresIn) * 1000
+                resData.data.id,
+                resData.data.api_token,
+                3600 * 1000
             )
         );
         const expirationDate = new Date(
-            new Date().getTime() + parseInt(resData.expiresIn) * 1000
+            new Date().getTime() + 3600 * 1000
         );
-        saveDataToStorage(resData.idToken, resData.localId, expirationDate);
+        saveDataToStorage(resData.data.api_token, resData.data.id, expirationDate);
     };
 };
 
