@@ -30,7 +30,6 @@ InformationScreen.navigationOptions = navData => {
                 />
             </HeaderButtons>
         ),
-
     };
 };
 
@@ -40,8 +39,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.secondary,
-
-
     }
 });
 

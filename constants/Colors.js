@@ -5,5 +5,4 @@ export default {
     tertiary2: '#5c6576',
     accent: '#ff076a',
     light: '#f5f5f5',
-
 }

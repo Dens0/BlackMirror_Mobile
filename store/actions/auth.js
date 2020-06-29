@@ -1,7 +1,6 @@
-import { AsyncStorage } from 'react-native';
+import {AsyncStorage} from 'react-native';
+import * as SecureStore from "expo-secure-store";
 
-// export const SIGNUP = 'SIGNUP';
-// export const LOGIN = 'LOGIN';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 
@@ -9,8 +8,8 @@ let timer;
 
 export const authenticate = (userId, token, expiryTime) => {
     return dispatch => {
-        dispatch(setLogoutTimer(expiryTime));
-        dispatch({ type: AUTHENTICATE, userId: userId, token: token });
+        // dispatch(setLogoutTimer(expiryTime));
+        dispatch({type: AUTHENTICATE, userId: userId, token: token});
     };
 };
 
@@ -42,7 +41,7 @@ export const signup = (email, password) => {
         }
 
         const resData = await response.json();
-        console.log(resData);
+
         dispatch(
             authenticate(
                 resData.localId,
@@ -50,6 +49,7 @@ export const signup = (email, password) => {
                 parseInt(resData.expiresIn) * 1000
             )
         );
+
         const expirationDate = new Date(
             new Date().getTime() + parseInt(resData.expiresIn) * 1000
         );
@@ -68,45 +68,40 @@ export const login = (email, password) => {
                 },
                 body: JSON.stringify({
                     email: email,
-                    password: password,
-                    returnSecureToken: true
+                    password: password
                 })
             }
         );
 
         if (!response.ok) {
             const errorResData = await response.json();
-            console.log(errorResData);
-            let message = errorResData.message;
-            // let message = 'Something went wrong!';
-            // if (errorId === 'EMAIL_NOT_FOUND') {
-            //     message = 'This email could not be found!';
-            // } else if (errorId === 'INVALID_PASSWORD') {
-            //     message = 'This password is not valid!';
-            // }
-            throw new Error(message);
+            throw new Error(errorResData.message);
         }
 
         const resData = await response.json();
-        console.log(resData);
+
         dispatch(
             authenticate(
                 resData.data.id,
                 resData.data.api_token,
-                3600 * 1000
+                3600000
             )
         );
         const expirationDate = new Date(
-            new Date().getTime() + 3600 * 1000
+            new Date().getTime() + 3600000
         );
-        saveDataToStorage(resData.data.api_token, resData.data.id, expirationDate);
+        await SecureStore.setItemAsync(
+            'userData',
+            JSON.stringify(resData.data)
+        );
+        // saveDataToStorage(resData.data.api_token, resData.data.id, expirationDate);
     };
 };
 
 export const logout = () => {
     clearLogoutTimer();
-    AsyncStorage.removeItem('userData');
-    return { type: LOGOUT };
+    SecureStore.deleteItemAsync('userData');
+    return {type: LOGOUT};
 };
 
 const clearLogoutTimer = () => {

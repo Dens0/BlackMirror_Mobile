@@ -6,16 +6,7 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../components/UI/HeaderButton';
 import ElementItem from '../components/elements/ElementItem';
 import Colors from '../constants/Colors';
-import {
-    AdMobBanner,
-    AdMobInterstitial,
-    PublisherBanner,
-    AdMobRewarded,
-    setTestDeviceIDAsync,
-} from 'expo-ads-admob';
 import BannerAdd from "../components/Adds/BannerAdd";
-import FullAdd from "../components/Adds/FullAdd";
-
 
 //AD
 //ca-app-pub-8731014179800764~6037445767 indentyfikator aplikacji
@@ -24,17 +15,13 @@ import FullAdd from "../components/Adds/FullAdd";
 //ca-app-pub-8731014179800764~9231419466 - indentyfikator aplikacji
 //ca-app-pub-8731014179800764/7814681429 - identyfikator jednoski reklamowej
 
-
 const ElementsOverviewScreen = props => {
     const products = useSelector(state => state.elements.availableProducts);
 
 
     return (
-
         <View style={styles.screen}>
             <BannerAdd/>
-
-
             <FlatList
                 style={styles.list}
                 data={products}
@@ -48,14 +35,10 @@ const ElementsOverviewScreen = props => {
                             color={Platform.OS === 'android' ? Colors.secondary : 'white'}
                             title="KONFIGURACJA"
                         />
-
                     </ElementItem>
                 )}
-
             />
         </View>
-
-
     );
 };
 
@@ -73,17 +56,17 @@ ElementsOverviewScreen.navigationOptions = navData => {
                 />
             </HeaderButtons>
         ),
-
     };
 };
+
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: Colors.secondary,
         paddingBottom: 30
-
     },
     list:{
       height:'100%'
     }
 });
+
 export default ElementsOverviewScreen;

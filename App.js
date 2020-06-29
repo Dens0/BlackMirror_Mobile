@@ -4,9 +4,12 @@ import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import ReduxThunk from 'redux-thunk'
-
+import productsReducer from './store/reducers/element';
+import MirrorNavigator from './navigation/MirrorNavigator';
+import BannerAdd from "./components/Adds/BannerAdd";
+import FullAdd from "./components/Adds/FullAdd";
+import {View} from "react-native";
 import elementsReducer from './store/reducers/element';
-
 import authReducer from './store/reducers/auth';
 import NavigationContainer from "./navigation/NavigationContainer";
 const rootReducer = combineReducers({
@@ -39,15 +42,9 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-
-            <NavigationContainer />
-
+      <NavigationContainer/>
     </Provider>
-
   );
-
-
-
 }
 // return(
 //     <AdMobBanner

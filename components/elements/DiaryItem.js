@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,49 +6,56 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
-  Platform, AsyncStorage, Storage
+  Platform,
+  ActivityIndicator
 } from 'react-native';
+import * as SecureStore from "expo-secure-store";
 import Colors from "../../constants/Colors";
-import Card from '../UI/Card';
 
 const DiaryItem = props => {
+  const [commits, setCommits] = useState();
   let TouchableCmp = TouchableOpacity;
 
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
   }
-  const fetchData = () => {
-    // ToDo::ogarnąć token w storage a nie async
-    // let token = AsyncStorage.getItem('userData').then(res => {
-    //   return JSON.parse(res);
-    // }).then(data => {
-    //   return data.token;
-    // });
-    // ToDo::poprawnie jest przez headers - z geta trzeba usunąć
-    const json = fetch('https://myblackmirror.pl/api/v1/data/changelog', {
+
+  const fetchData = async () => {
+    let userData = await SecureStore.getItemAsync('userData').then(res => { return JSON.parse(res); });
+
+    const commits = fetch('https://myblackmirror.pl/api/v1/data/changelog', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-        // 'Authorization': 'Bearer ' + token
-        'Authorization': 'Bearer test'
+        'Authorization': 'Bearer ' + userData.api_token
       })
     }).then(res => {
       return res.json();
     }).then(data => {
-      console.log(data);
+      setCommits(data.data);
     });
-  }
-  fetchData()
+  };
+
+  fetchData();
+
   return (
       <View style={styles.touchable}>
-        <TouchableCmp onPress={props.onSelect} useForeground>
-          <Text>Test</Text>
-
-        </TouchableCmp>
+        {commits ? (
+            <>
+            {commits.map((item) => (
+                <>
+                  <Text>Test</Text>
+                  <TouchableCmp onPress={props.onSelect} useForeground>
+                    <Text>{item.author} - {item.message}</Text>
+                  </TouchableCmp>
+                </>
+            ))}
+            </>
+          ) : <ActivityIndicator size="large" color="white" />
+        }
       </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   element: {
@@ -94,7 +101,6 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     color: '#f5f5f5',
   },
-
   actions: {
     // flexDirection: 'row',
     // paddingTop: 16,
