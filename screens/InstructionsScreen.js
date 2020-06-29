@@ -3,12 +3,17 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import HeaderButton from "../components/UI/HeaderButton";
 import Colors from "../constants/Colors";
+import BannerAdd from "../components/Adds/BannerAdd";
 
 const InstructionScreen = props => {
     return (
-        <View style={styles.screen}>
-            <Text>POMOC</Text>
-        </View>
+        <>
+            <BannerAdd/>
+            <View style={styles.screen}>
+
+                <Text>POMOC</Text>
+            </View>
+        </>
     );
 };
 

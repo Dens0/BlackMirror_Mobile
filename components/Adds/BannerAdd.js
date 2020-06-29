@@ -11,22 +11,15 @@ import {
     setTestDeviceIDAsync,
 } from 'expo-ads-admob';
 
-//AD
-//ca-app-pub-8731014179800764~6037445767 indentyfikator aplikacji
-//ca-app-pub-8731014179800764/4768542227 identyfikator jednoski rreklamowej
-//IOS
-//ca-app-pub-8731014179800764~9231419466 - indentyfikator aplikacji
-//ca-app-pub-8731014179800764/7814681429 - identyfikator jednoski rreklamowej
-
-// let bannerAdId = Platform.OS === 'ios =' ? 'ca-app-pub-8731014179800764/7814681429' : 'ca-app-pub-8731014179800764/4768542227';
-
+import Adds from "../../constants/Adds";
+import Colors from "../../constants/Colors";
 const BannerAdd = props => {
 
 
     return <View>
         <AdMobBanner
             bannerSize="smartBannerLandscape"
-            adUnitID={'ca-app-pub-8731014179800764/4768542227'}// Test ID, Replace with your-admob-unit-id
+            adUnitID={Adds.bannerAdId}// Test ID, Replace with your-admob-unit-id
             servePersonalizedAds={true}
         />
     </View>;

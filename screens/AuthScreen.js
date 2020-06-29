@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
-
+import BannerAdd from "../components/Adds/BannerAdd";
 
 import Input from "../components/UI/Input";
 import Card from "../components/UI/Card";
@@ -161,6 +161,7 @@ const AuthScreen = props => {
                     {/*</ScrollView>*/}
                 </Card>
             </LinearGradient>
+            <BannerAdd/>
         </KeyboardAvoidingView>
     );
 };
@@ -183,7 +184,9 @@ const styles = StyleSheet.create({
         width: '80%',
         maxWidth: 300,
         maxHeight: 300,
-        padding: 20
+        padding: 20,
+        marginBottom:100,
+        backgroundColor: Colors.light
     },
     buttonContainer: {
         marginTop: 10

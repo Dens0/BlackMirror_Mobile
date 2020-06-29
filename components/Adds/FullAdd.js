@@ -19,14 +19,14 @@ import {
 //ca-app-pub-8731014179800764/7814681429 - identyfikator jednoski rreklamowej
 
 let bannerAdId = Platform.OS === 'ios =' ? 'ca-app-pub-8731014179800764/7814681429' : 'ca-app-pub-8731014179800764/4768542227';
-
+import Adds from "../../constants/Adds";
 const FullAdd = props => {
 
 
     return <View>
         <PublisherBanner
             bannerSize="smartBannerLandscape"
-            adUnitID={'ca-app-pub-8731014179800764/4768542227'}// Test ID, Replace with your-admob-unit-id
+            adUnitID={Adds.fullAddId}// Test ID, Replace with your-admob-unit-id
             servePersonalizedAds={true}
             onDidFailToReceiveAdWithError={this.bannerError}
 

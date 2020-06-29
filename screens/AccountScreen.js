@@ -3,13 +3,18 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import HeaderButton from "../components/UI/HeaderButton";
 import Colors from "../constants/Colors";
+import BannerAdd from "../components/Adds/BannerAdd";
 
 const AccountScreen = props => {
     return (
+        <>
+            <BannerAdd/>
         <View style={styles.screen}>
+
             <Text>KONTA ZEWNĘTRZNE</Text>
         </View>
-    );
+    </>
+            );
 };
 
 AccountScreen.navigationOptions = navData => {

@@ -26,7 +26,7 @@ import FullAdd from "../components/Adds/FullAdd";
 
 
 const ElementsOverviewScreen = props => {
-    const products = useSelector(state => state.products.availableProducts);
+    const products = useSelector(state => state.elements.availableProducts);
 
 
     return (
@@ -36,19 +36,17 @@ const ElementsOverviewScreen = props => {
 
 
             <FlatList
+                style={styles.list}
                 data={products}
                 keyExtractor={item => item.id}
                 renderItem={itemData => (
                     <ElementItem
                         title={itemData.item.title}
                         image={itemData.item.imageUrl}
-
-
                     >
                         <Button
-                            color={Colors.secondary}
+                            color={Platform.OS === 'android' ? Colors.secondary : 'white'}
                             title="KONFIGURACJA"
-
                         />
 
                     </ElementItem>
@@ -81,7 +79,11 @@ ElementsOverviewScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: Colors.secondary,
+        paddingBottom: 30
 
+    },
+    list:{
+      height:'100%'
     }
 });
 export default ElementsOverviewScreen;
