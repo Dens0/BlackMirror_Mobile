@@ -1,12 +1,14 @@
-import React from 'react';
-import {View, FlatList, Button, Platform, StyleSheet} from 'react-native';
+import React, {useEffect,useState} from 'react';
+import {View, Text, FlatList, Button, Switch, Platform, StyleSheet, ActivityIndicator} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
-
+import Activity from "../models/activity";
 import HeaderButton from '../components/UI/HeaderButton';
 import ElementItem from '../components/elements/ElementItem';
 import Colors from '../constants/Colors';
 import BannerAdd from "../components/Adds/BannerAdd";
+import * as SecureStore from "expo-secure-store";
+import * as elementActions from '../store/actions/elements'
 
 //AD
 //ca-app-pub-8731014179800764~6037445767 indentyfikator aplikacji
@@ -16,24 +18,35 @@ import BannerAdd from "../components/Adds/BannerAdd";
 //ca-app-pub-8731014179800764/7814681429 - identyfikator jednoski reklamowej
 
 const ElementsOverviewScreen = props => {
-    const products = useSelector(state => state.elements.availableProducts);
+    const elements = useSelector(state => state.elements.availableElements);
+    const dispach = useDispatch();
+    useEffect(() => {
+        dispach(elementActions.fetchElements())
+    },[dispach])
 
 
     return (
         <View style={styles.screen}>
-            <BannerAdd/>
+            {/*<BannerAdd/>*/}
             <FlatList
                 style={styles.list}
-                data={products}
+                data={elements}
                 keyExtractor={item => item.id}
                 renderItem={itemData => (
                     <ElementItem
                         title={itemData.item.title}
                         image={itemData.item.imageUrl}
                     >
+                        <View style={styles.switchContainer}>
+                            <Text styles={styles.swText}>Włącz/Wyłącz</Text>
+                            <Switch style={styles.switch}/>
+                            {/*<Activity/>*/}
+                        </View>
                         <Button
                             color={Platform.OS === 'android' ? Colors.secondary : 'white'}
-                            title="KONFIGURACJA"
+                            title="KONFIGURACJA" onPress={() => {
+                            props.navigation.navigate({routeName: itemData.item.description})
+                        }}
                         />
                     </ElementItem>
                 )}
@@ -64,8 +77,22 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.secondary,
         paddingBottom: 30
     },
-    list:{
-      height:'100%'
+    list: {
+        height: '100%'
+    }, switchContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        backgroundColor: Colors.tretiary,
+    }, switch: {
+        marginLeft: 20,
+        backgroundColor: 'transparent',
+    }, swText: {
+        color: Colors.light,
+        fontSize: 26,
+
     }
 });
 

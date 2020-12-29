@@ -1,11 +1,12 @@
-class Elem {
-  constructor(id, ownerId, title, imageUrl, description) {
+class Element {
+  constructor(active, base_config,config,icon,id,name,ordering,slug) {
+    this.base_config = base_config;
+    this.config = config;
     this.id = id;
-    this.ownerId = ownerId;
-    this.imageUrl = imageUrl;
-    this.title = title;
-    this.description = description;
+    this.name = name;
+    this.ordering = ordering;
+    this.slug = slug;
   }
 }
 
-export default Elem;
+export default Element;
