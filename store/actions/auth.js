@@ -4,6 +4,7 @@ import * as SecureStore from "expo-secure-store";
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 
+
 let timer;
 
 export const authenticate = (userId, token, expiryTime) => {
@@ -12,6 +13,13 @@ export const authenticate = (userId, token, expiryTime) => {
         dispatch({type: AUTHENTICATE, userId: userId, token: token});
     };
 };
+
+
+
+
+
+
+
 
 export const signup = (email, password) => {
     return async dispatch => {
