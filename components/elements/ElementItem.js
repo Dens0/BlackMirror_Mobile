@@ -2,15 +2,17 @@ import React, {useState} from 'react';
 import {
     View,
     Text,
-    Image,
     StyleSheet,
     TouchableOpacity,
     TouchableNativeFeedback,
     Platform
 } from 'react-native';
+// import SvgUri from 'react-native-svg-uri';
+
+import { SvgCssUri } from 'react-native-svg';
+
 import Colors from "../../constants/Colors";
 import Card from '../UI/Card';
-import * as SecureStore from "expo-secure-store";
 
 // https://myblackmirror.pl/api/v1/features/time?api_token=test
 // https://myblackmirror.pl/api/v1/features?api_token=test
@@ -29,7 +31,14 @@ const ElementItem = props => {
                 <TouchableCmp onPress={props.onSelect} useForeground>
                     <View>
                         <View style={styles.imageContainer}>
-                            <Image style={styles.image} source={{uri: props.image}}/>
+                            {/*<Text>{props.image}</Text>*/}
+                            {/*<Image style={styles.image} source={{uri: props.image}}/>*/}
+                            {/*<SvgUri source={require(props.icon) }/>*/}
+                            <SvgCssUri
+                                width="60%"
+                                height="60%"
+                                uri={props.image}
+                            />
                         </View>
                         <View style={styles.details}>
                             <Text style={styles.title}>{props.title}</Text>
@@ -58,7 +67,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         width: '100%',
-        height: '60%',
+        height: '50%',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         overflow: 'hidden',
@@ -66,22 +75,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    image: {
-        width: '50%',
-        height: '50%',
-        resizeMode: 'contain',
-        // backgroundColor:Colors.primary
-    },
+    // image: {
+    //     width: '10%',
+    //     height: '10%',
+    //     resizeMode: 'contain',
+    //     // color: 'white',
+    //     // backgroundColor:Colors.primary
+    // },
     details: {
+    justifyContent:'center',
         alignItems: 'center',
-        height: '17%',
+        height: '22%',
+
         // padding: 10,
     },
     title: {
         justifyContent: 'center',
         alignItems: 'center',
         fontFamily: 'Quicksand-bold',
-        fontSize: 18,
+        fontSize: 22,
+        textTransform:'uppercase',
         marginVertical: 2,
         color: '#f5f5f5',
     },
@@ -89,13 +102,15 @@ const styles = StyleSheet.create({
         // flexDirection: 'row',
         // paddingTop: 16,
         alignItems: 'center',
-        height: '23%',
+        height: '28%',
         // paddingHorizontal: 20,
         backgroundColor: Colors.tertiary,
         color: '#f5f5f5',
         justifyContent: 'center',
         alignContent: 'center',
-    }
+
+    },
+
 });
 
 export default ElementItem;

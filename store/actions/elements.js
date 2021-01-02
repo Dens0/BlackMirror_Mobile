@@ -18,9 +18,10 @@ export const fetchElements = () => {
             }
         );
         const resData = await response.json()
-        // console.log(resData)
+        console.log(resData)
         const loadedElements = []
             for (const key in resData.data){
+
                 loadedElements.push(new Element(
                     // key,'u1',
                     resData.data[key].active,
@@ -32,11 +33,11 @@ export const fetchElements = () => {
                     resData.data[key].ordering,
                     resData.data[key].slug,
                     // console.log(resData.data[key].active,)
-                    // console.log(resData.data[key].slug)
+                    // console.log(resData.data[key].icon)
                     // console.log(resData.data[key].base_config,)
                 ))
             }
-
+// console.log(loadedElements)
         dispach({type: SET_ELEMENTS, elements: loadedElements})
 
     }
