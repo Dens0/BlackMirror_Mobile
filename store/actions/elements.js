@@ -1,10 +1,11 @@
 import Element from "../../models/element";
 import * as SecureStore from "expo-secure-store";
-export const SET_ELEMENTS = 'ADD_ACTIVITY';
-export const EDIT_ELEMENTS = 'EDIT_ACTIVITY';
+
+export const SET_ELEMENTS = 'SET_ELEMENTS';
+export const UPDATE_ELEMENTS = 'EDIT_ELEMENTS';
 
 export const fetchElements = () => {
-    return async dispach => {
+    return async dispatch => {
         let userData = SecureStore.getItemAsync('userData').then(res => {
             return JSON.parse(res);
         });
@@ -18,44 +19,70 @@ export const fetchElements = () => {
             }
         );
         const resData = await response.json()
-        console.log(resData)
+        // console.log(resData)
         const loadedElements = []
-            for (const key in resData.data){
-
-                loadedElements.push(new Element(
-                    // key,'u1',
-                    resData.data[key].active,
-                    resData.data[key].base_config,
-                    resData.data[key].config,
-                    resData.data[key].icon,
-                    resData.data[key].id,
-                    resData.data[key].name,
-                    resData.data[key].ordering,
-                    resData.data[key].slug,
-                    // console.log(resData.data[key].active,)
-                    // console.log(resData.data[key].icon)
-                    // console.log(resData.data[key].base_config,)
-                ))
-            }
-// console.log(loadedElements)
-        dispach({type: SET_ELEMENTS, elements: loadedElements})
+        for (const key in resData.data) {
+            loadedElements.push(new Element(
+                resData.data[key].active,
+                resData.data[key].base_config,
+                resData.data[key].config,
+                resData.data[key].icon,
+                resData.data[key].id,
+                resData.data[key].name,
+                resData.data[key].ordering,
+                resData.data[key].slug,
+                // console.log(resData.data[key].config.active,)
+                // console.log(resData.data[key].icon)
+                // console.log(resData.data[key].base_config,)
+            ))
+        }
+        dispatch({type: SET_ELEMENTS, elements: loadedElements})
 
     }
 }
 
-export const activity = ({id, active}) => ({
-    type: SET_ELEMENTS,
-    payload: {
-        id: "1",
-        active: true,
-    }
-});
+export const updateElement = (id , active , slug ) => {
 
-export const editActivity = ({id, active}) => ({
-    type: EDIT_ELEMENTS,
-    payload: {
-        id: '1',
-        active: true,
+    console.log('ala ma kotaaaaaaaaaaaaa')
+    if (active)
+    {
+        active = 0;
+    }else
+    {
+        active =1;
     }
 
-})
+    console.log(active)
+    const response = fetch(
+        `https://myblackmirror.pl/api/v1/features/setActive/${slug}/${active}?api_token=test&fbclid=IwAR1-ym0wALyU3yiu2VsrJq4vtX70NqGq5cM6TCIZ3vUQ_C_Rc9b2C2_lkRM`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+            })
+        }
+    );
+
+    // console.log(response)
+    // if (!response.ok) {
+    //     throw new Error('Something went wrong!');
+    // }
+    // const resData = response.json();
+    // console.log(resData)
+    // dispatch({
+    //     type: UPDATE_ELEMENTS,
+    //     pid: id,
+    //     productData: {
+    //         active,
+    //         slug,
+    //
+    //     }
+    // });
+
+
+};
+
+

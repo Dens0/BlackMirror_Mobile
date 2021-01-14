@@ -6,6 +6,7 @@ import HeaderButton from '../components/UI/HeaderButton';
 import ElementItem from '../components/elements/ElementItem';
 import Colors from '../constants/Colors';
 import * as elementActions from '../store/actions/elements'
+// import {colors} from "react-native-svg/lib/typescript/lib/extract/extractColor";
 
 
 //AD
@@ -18,6 +19,7 @@ import * as elementActions from '../store/actions/elements'
 const ElementsOverviewScreen = props => {
     const [isLoading, setIsLoading] = useState(false)
     const elements = useSelector(state => state.elements.availableElements);
+    const [isOn,setIsOn] = useState()
     const dispach = useDispatch();
     useEffect(() => {
         const loadProducts = async () => {
@@ -27,7 +29,6 @@ const ElementsOverviewScreen = props => {
         }
         loadProducts();
     }, [dispach])
-
 
     if (isLoading) {
         return <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -40,7 +41,11 @@ const ElementsOverviewScreen = props => {
             <Text>Brak produktów do wyświetlenia</Text>
         </View>
     }
-
+const changeElement =(id,active,slug)=>
+    {
+        elementActions.updateElement(id,active,slug)
+        elementActions.fetchElements()
+    }
     return (
         <View style={styles.screen}>
             {/*<BannerAdd/>*/}
@@ -55,8 +60,14 @@ const ElementsOverviewScreen = props => {
                         image={itemData.item.icon}
                     >
                         <View style={styles.switchContainer}>
-                            <Text styles={styles.swText}>Włącz/Wyłącz</Text>
-                            <Switch style={styles.switch}/>
+                            <Text style={{color:'white'}}>Włącz/Wyłącz</Text>
+                            <Switch
+                                trackColor={{true: Colors.primary}}
+                                style={styles.switch}
+                                thumbColor={Colors.light}
+                                value={itemData.item.config.active}
+                                onPress={changeElement(itemData.item.id,itemData.item.config.active,itemData.item.slug)}
+                            />
                         </View>
                         <Button
                             color={Platform.OS === 'android' ? Colors.secondary : 'white'}
@@ -73,6 +84,7 @@ const ElementsOverviewScreen = props => {
 
 ElementsOverviewScreen.navigationOptions = navData => {
     return {
+
         headerTitle: 'Elementy na lustrze',
         headerLeft: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
@@ -106,16 +118,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
         backgroundColor: Colors.tretiary,
     },
-    switch:
-        {
-            marginLeft: 20,
-            backgroundColor: 'transparent',
-        },
-    swText:
-        {
-            color: 'orange',
-            fontSize: 26,
-        }
 });
 
 export default ElementsOverviewScreen;
