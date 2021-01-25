@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useCallback, useState} from 'react';
 import {View, Text, FlatList, Button, Switch, Platform, StyleSheet, ActivityIndicator} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
@@ -6,8 +6,8 @@ import HeaderButton from '../components/UI/HeaderButton';
 import ElementItem from '../components/elements/ElementItem';
 import Colors from '../constants/Colors';
 import * as elementActions from '../store/actions/elements'
+import * as elementsActions from "../store/actions/elements";
 // import {colors} from "react-native-svg/lib/typescript/lib/extract/extractColor";
-
 
 //AD
 //ca-app-pub-8731014179800764~6037445767 indentyfikator aplikacji
@@ -19,7 +19,12 @@ import * as elementActions from '../store/actions/elements'
 const ElementsOverviewScreen = props => {
     const [isLoading, setIsLoading] = useState(false)
     const elements = useSelector(state => state.elements.availableElements);
-    const [isOn,setIsOn] = useState()
+    const [isOn, setIsOn] = useState()
+    const [active, setActive] = useState(true)
+
+    // const useEffect
+    // const [active, setActive] = useState(editedElement ? editedElement.config.active : '')
+
     const dispach = useDispatch();
     useEffect(() => {
         const loadProducts = async () => {
@@ -38,14 +43,31 @@ const ElementsOverviewScreen = props => {
 
     if (isLoading) {
         return <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Brak produktów do wyświetlenia</Text>
+            <Text>Brak elementów do wyświetlenia</Text>
         </View>
     }
-const changeElement =(id,active,slug)=>
-    {
-        elementActions.updateElement(id,active,slug)
-        elementActions.fetchElements()
-    }
+    // const dispatch = useDispatch();
+    //
+    // const valueChangeHandler = (active,slug,id) => {
+    //     // if (config.active ===true)
+    //     // {
+    //     //   config.active = +1;
+    //     // }else
+    //     // {
+    //     //   config.active = +0;
+    //     // }
+    //     dispatch(elementsActions.updateElement(active,slug,id))
+    // }
+
+// const changeActiveHandler = useCallback()=>
+//     {
+//         console.log("zamieniane")
+//     }
+//     useEffect(()=>{
+//         props.navigation.setParams('submit':changeActiveHandler)
+//     },[changeActiveHandler])
+
+
     return (
         <View style={styles.screen}>
             {/*<BannerAdd/>*/}
@@ -53,27 +75,26 @@ const changeElement =(id,active,slug)=>
             <FlatList
                 style={styles.list}
                 data={elements}
-                keyExtractor={item => item.id.toString()}
+                keyExtractor={item => item.id}
                 renderItem={itemData => (
                     <ElementItem
                         title={itemData.item.name}
                         image={itemData.item.icon}
                     >
-                        <View style={styles.switchContainer}>
-                            <Text style={{color:'white'}}>Włącz/Wyłącz</Text>
-                            <Switch
-                                trackColor={{true: Colors.primary}}
-                                style={styles.switch}
-                                thumbColor={Colors.light}
-                                value={itemData.item.config.active}
-                                onPress={changeElement(itemData.item.id,itemData.item.config.active,itemData.item.slug)}
-                            />
-                        </View>
+
                         <Button
                             color={Platform.OS === 'android' ? Colors.secondary : 'white'}
-                            title="KONFIGURACJA" onPress={() => {
-                            props.navigation.navigate({routeName: itemData.item.slug})
-                        }}
+                            title="KONFIGURACJA"
+                            onPress={() => {
+                                props.navigation.navigate("EditElementScreen", {
+                                    elementName: itemData.item.name,
+                                    elementSlug: itemData.item.slug,
+                                    elementImg: itemData.item.img,
+                                    elementId: itemData.item.id,
+                                    elementConf: itemData.item.config.data.timezone,
+                                    elementActive: itemData.item.active,
+                                })
+                            }}
                         />
                     </ElementItem>
                 )}
@@ -83,8 +104,8 @@ const changeElement =(id,active,slug)=>
 };
 
 ElementsOverviewScreen.navigationOptions = navData => {
-    return {
 
+    return {
         headerTitle: 'Elementy na lustrze',
         headerLeft: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
