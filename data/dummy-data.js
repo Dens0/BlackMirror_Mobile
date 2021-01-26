@@ -1,6 +1,4 @@
 import Element from '../models/element';
-import * as SecureStore from "expo-secure-store";
-import {useState} from "react";
 
 // https://imgur.com/033cdUt ZTM
 // https://imgur.com/se4xKMB
@@ -16,7 +14,7 @@ const ELEMENTS = [
     new Element(
         'p1',
         'u1',
-        'CZAS',
+        'CZAddddS',
         'https://i.imgur.com/033cdUt.png',
         'TimeScreen',
 

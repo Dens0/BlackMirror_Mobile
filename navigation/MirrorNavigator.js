@@ -32,6 +32,10 @@ import TaskScreen from "../screens/ElementsScreens/TaskScreen";
 import CalendarScreen from "../screens/ElementsScreens/CalendarScreen";
 import AirScreen from "../screens/ElementsScreens/AirScreen";
 import CovidScreen from "../screens/ElementsScreens/CovidScreen";
+import TimeTableScreen from "../screens/ElementsScreens/TimeTableScreen";
+import SensorsScreen from "../screens/ElementsScreens/SensorsScreen";
+import CameraScreen from "../screens/ElementsScreens/CameraScreen";
+
 
 const defaultNavOptions = {
     drawerLabel: 'Elementy',
@@ -51,13 +55,16 @@ const defaultNavOptions = {
 const ElementsNavigator = createStackNavigator(
   {
       ElementsOverView: ElementsOverviewScreen,
-      TimeScreen:TimeScreen,
-      WeatherScreen:WeatherScreen,
-      NewsScreen:NewsScreen,
-      TaskScreen:TaskScreen,
-      CalendarScreen:CalendarScreen,
-      AirScreen:AirScreen,
-      CovidScreen:CovidScreen,
+      time:TimeScreen,
+      weather:WeatherScreen,
+      news:NewsScreen,
+      tasks:TaskScreen,
+      calendar:CalendarScreen,
+      air:AirScreen,
+      sensors:SensorsScreen,
+      camera:CameraScreen,
+      covid:CovidScreen,
+      timetable:TimeTableScreen,
   },
   {
       navigationOptions: {

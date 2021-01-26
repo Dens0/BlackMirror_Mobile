@@ -21,6 +21,7 @@
     "react-native-admob-native-ads": "^0.2.9",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-screens": "~2.2.0",
+    "react-native-svg-from-uri": "^1.0.2",
     "react-native-web": "^0.11.7",
     "react-navigation": "^3.13.0",
     "react-navigation-header-buttons": "^3.0.1",
@@ -30,6 +31,9 @@
   },
   "devDependencies": {
     "babel-preset-expo": "^8.1.0",
+    "react-native-remote-svg": "^2.0.6",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-uri": "^1.2.3",
     "redux-devtools-extension": "^2.13.8"
   },
   "private": true
