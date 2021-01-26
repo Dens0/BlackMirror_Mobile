@@ -14,13 +14,6 @@ export const authenticate = (userId, token, expiryTime) => {
     };
 };
 
-
-
-
-
-
-
-
 export const signup = (email, password) => {
     return async dispatch => {
         const response = await fetch(
@@ -49,7 +42,8 @@ export const signup = (email, password) => {
         }
 
         const resData = await response.json();
-
+        console.log(response)
+        console.log(resData)
         dispatch(
             authenticate(
                 resData.localId,
@@ -87,7 +81,6 @@ export const login = (email, password) => {
         }
 
         const resData = await response.json();
-
         dispatch(
             authenticate(
                 resData.data.id,
@@ -102,7 +95,7 @@ export const login = (email, password) => {
             'userData',
             JSON.stringify(resData.data)
         );
-        // saveDataToStorage(resData.data.api_token, resData.data.id, expirationDate);
+        saveDataToStorage(resData.data.api_token, resData.data.id, expirationDate);
     };
 };
 

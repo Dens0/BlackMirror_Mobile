@@ -14,7 +14,7 @@ const ELEMENTS = [
     new Element(
         'p1',
         'u1',
-        'CZAddddS',
+        'CZAS',
         'https://i.imgur.com/033cdUt.png',
         'TimeScreen',
 
